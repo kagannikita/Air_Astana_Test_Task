@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/9Tk1RQU76qgCDQfOb20+AU2Kp9/J45iezH3rHp5z0R1WpY0P0jGrkIDih6XYVGUKPL+ZAy16I5S0GdEDq38PQ==",
+  "dgSpecHash": "96XCF+5Hwy5PDww83FfWrit+VnOC95UxuctafRr4u+n5M1oVExsndL4J8wDZSCIKXqGql6w2umnvxvBmsAsOpA==",
   "success": true,
   "projectFilePath": "D:\\Air_Astana_test_task\\server\\server\\server.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nikita\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
     "C:\\Users\\Nikita\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\Nikita\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Users\\Nikita\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.8\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.8.nupkg.sha512",

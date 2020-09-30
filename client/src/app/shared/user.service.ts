@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -22,7 +22,6 @@ export class UserService {
 
   });
 
-
   comparePasswords(fb: FormGroup): void {
     const confirmPswrdCtrl = fb.get('ConfirmPassword');
     if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
@@ -35,7 +34,6 @@ export class UserService {
     }
   }
 
-
   register(): Observable<any> {
     const body = {
       UserName: this.formModel.value.UserName,
@@ -44,5 +42,13 @@ export class UserService {
       Password: this.formModel.value.Passwords.Password
     };
     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
+  }
+
+  login(formData): Observable<any> {
+    return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
+  }
+
+  getUserProfile(): Observable<any> {
+    return this.http.get(this.BaseURI + '/UserProfile');
   }
 }
