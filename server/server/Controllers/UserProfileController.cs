@@ -34,5 +34,29 @@ namespace server.Controllers
                 user.UserName
             };
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("ForAdmin")]
+        public string GetForAdmin()
+        {
+            return "Web method for Admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "User")]
+        [Route("ForUser")]
+        public string GetUser()
+        {
+            return "Web method for User";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,User")]
+        [Route("ForAdminOrUser")]
+        public string GetForAdminOrCustomer()
+        {
+            return "Web method for Admin or User";
+        }
     }
 }

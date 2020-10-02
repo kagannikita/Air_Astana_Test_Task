@@ -18,18 +18,18 @@ export class RegistrationComponent implements OnInit {
   onSubmit(): void {
     this.service.register().subscribe(
       (res: any) => {
-        if (res.succeeded) {
+        if (res.Succeeded) {
           this.service.formModel.reset();
           this.toastr.success('Пользователь создан!', 'Регистрация выполнена успешно.');
         } else {
-          res.errors.forEach(element => {
-            switch (element.code) {
+          res.Errors.forEach(element => {
+            switch (element.Code) {
               case 'DuplicateUserName':
                 this.toastr.error('Такой логин уже есть', 'Регистрация выполнена с ошибкой.');
                 break;
 
               default:
-                this.toastr.error(element.description, 'Регистрация выполнена с ошибкой.');
+                this.toastr.error(element.Description, 'Регистрация выполнена с ошибкой.');
                 break;
             }
           });

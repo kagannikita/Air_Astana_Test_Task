@@ -1,12 +1,35 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand text-white">JWT Auth System</a>
-  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+  <a class="navbar-brand text-white">Air Astana</a>
+  <ul *ngIf="this.role.roleMatch(['Admin'])" class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a  class="nav-link" routerLink="/adminpanel">Панель администратора</a>
+    </li>
+  </ul>
+  <ul *ngIf="!this.role.isAuthenticated()" class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a  class="nav-link" routerLink="/user/login">Авторизация</a>
+    </li>
+  </ul>
+  <button  *ngIf="this.role.isAuthenticated()" class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Выйти</button>
 </nav>
 
-<div class="card m-5" style="width:18rem" *ngIf="userDetails">
-  <ul class="list-group">
-    <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
-    <li class="list-group-item"><strong>FullName : </strong>{{userDetails.fullName}}</li>
-    <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
-  </ul>
-</div>
+<table class="table table-hover">
+  <tr>
+    <th>Город вылета</th>
+    <th>Город прилета</th>
+    <th>Дата вылета </th>
+    <th>Дата прилета</th>
+    <th>Задержка</th>
+  </tr>
+  <tr *ngFor="let pd of service.list">
+    <td (click)="populateForm(pd)">{{pd.StartCity}}</td>
+    <td (click)="populateForm(pd)">{{pd.EndCity}}</td>
+    <td (click)="populateForm(pd)">{{pd.StartDate| date: 'd MMMM  h:mm a'}}</td>
+    <td (click)="populateForm(pd)">{{pd.EndDate| date: 'd MMMM  h:mm a'}}</td>
+    <td (click)="populateForm(pd)">{{pd.Delay| date: 'mm мин'}}</td>
+    <td>
+      <i *ngIf="this.role.roleMatch(['Admin'])" class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.FSId)"></i>
+    </td>
+  </tr>
+</table>
+

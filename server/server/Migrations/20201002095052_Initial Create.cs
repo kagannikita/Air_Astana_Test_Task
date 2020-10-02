@@ -49,6 +49,23 @@ namespace server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FlightSchedules",
+                columns: table => new
+                {
+                    FSId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartCity = table.Column<string>(type: "varchar(255)", nullable: false),
+                    EndCity = table.Column<string>(type: "varchar(255)", nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    Delay = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FlightSchedules", x => x.FSId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -210,6 +227,9 @@ namespace server.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "FlightSchedules");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

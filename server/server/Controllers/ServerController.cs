@@ -11,7 +11,7 @@ namespace server.Controllers
     [ApiController]
     public class ServerController : ControllerBase
     {
-        public ServerController(AuthenticationContext context)
+        public ServerController(ApplicationContext context)
         {
 
         }

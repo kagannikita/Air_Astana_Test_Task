@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 export class UserService {
 
   constructor(private fb: FormBuilder, private http: HttpClient) { }
+
   readonly BaseURI = 'http://localhost:54277/api';
 
   formModel = this.fb.group({
@@ -21,6 +22,21 @@ export class UserService {
     }, { validator: this.comparePasswords })
 
   });
+
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    if ( localStorage.getItem('token')  != null){
+    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    const userRole = payLoad.role;
+    allowedRoles.forEach(element => {
+        if (userRole === element) {
+          isMatch = true;
+          return false;
+        }
+      });
+    return isMatch;
+    }
+  }
 
   comparePasswords(fb: FormGroup): void {
     const confirmPswrdCtrl = fb.get('ConfirmPassword');
@@ -48,7 +64,8 @@ export class UserService {
     return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
   }
 
-  getUserProfile(): Observable<any> {
-    return this.http.get(this.BaseURI + '/UserProfile');
+  isAuthenticated(): boolean {
+    return localStorage.getItem('token') != null;
   }
+
 }

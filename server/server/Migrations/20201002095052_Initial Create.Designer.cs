@@ -9,8 +9,8 @@ using server.Models;
 
 namespace server.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
-    [Migration("20200929082439_InitialCreate")]
+    [DbContext(typeof(ApplicationContext))]
+    [Migration("20201002095052_Initial Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -225,6 +225,35 @@ namespace server.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("server.Models.FlightScheduleModel", b =>
+                {
+                    b.Property<int>("FSId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Delay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EndCity")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StartCity")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("FSId");
+
+                    b.ToTable("FlightSchedules");
                 });
 
             modelBuilder.Entity("server.Models.ApplicationUser", b =>
