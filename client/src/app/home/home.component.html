@@ -10,6 +10,7 @@
       <a  class="nav-link" routerLink="/user/login">Авторизация</a>
     </li>
   </ul>
+  <p *ngIf="this.role.isAuthenticated()" class="text-white  mb-0">Вы вошли как {{this.userDetails.UserName}}</p>
   <button  *ngIf="this.role.isAuthenticated()" class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Выйти</button>
 </nav>
 

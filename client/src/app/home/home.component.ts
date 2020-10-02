@@ -13,11 +13,19 @@ import {UserService} from '../shared/user.service';
 })
 
 export class HomeComponent implements OnInit {
-
+  userDetails;
   constructor(public router: Router, public service: FlightScheduleService, public toastr: ToastrService, public role: UserService) { }
 
   ngOnInit(): void {
     this.service.refreshList();
+    this.role.getUserProfile().subscribe(
+      res => {
+        this.userDetails = res;
+      },
+      err => {
+        console.log(err);
+      },
+    );
   }
 
   resetForm(form?: NgForm): void {

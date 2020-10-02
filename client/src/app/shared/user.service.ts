@@ -50,6 +50,10 @@ export class UserService {
     }
   }
 
+  getUserProfile(): Observable<any> {
+    return this.http.get(this.BaseURI + '/UserProfile');
+  }
+
   register(): Observable<any> {
     const body = {
       UserName: this.formModel.value.UserName,
