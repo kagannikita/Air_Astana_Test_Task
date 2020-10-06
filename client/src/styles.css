@@ -69,7 +69,7 @@ div.form-group.required>label:first-child:after{
   font-weight: 600;
   display:inline-block;
   padding: 30px 40px 10px 40px;
-  cursor: pointer;
+  cursor: default;
   color: #545d6a;
   border-bottom: 2px solid #545d6a;
 }
@@ -111,6 +111,15 @@ input.ng-valid{
 }
 
 table tr:hover{
-  cursor: pointer;
+  cursor: default;
 }
-
+.container_1 table{
+  width: 50%;
+  height:50%;
+  float:left;
+}
+.container_2 {
+  width: 50%;
+  height:50%;
+  float:right;
+}

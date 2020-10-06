@@ -1,4 +1,7 @@
+<div class="container_1">
 <app-home></app-home>
+</div>
+<div class="container_2" style="width: 50%; height:50%; float:left; margin-top: 1%">
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
   <input type="hidden" name="FSId" [value]="service.formData.FSId">
   <div class="form-group">
@@ -60,3 +63,4 @@
     <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid">Потвердить</button>
   </div>
 </form>
+</div>

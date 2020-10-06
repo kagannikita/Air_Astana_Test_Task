@@ -16,6 +16,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import localeRuExtra from '@angular/common/locales/extra/ru';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 registerLocaleData(localeRu, 'ru-RU', localeRuExtra);
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ registerLocaleData(localeRu, 'ru-RU', localeRuExtra);
     ToastrModule.forRoot({
       progressBar: true
     }),
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ru-RU'},
@@ -46,6 +50,7 @@ registerLocaleData(localeRu, 'ru-RU', localeRuExtra);
       multi: true,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

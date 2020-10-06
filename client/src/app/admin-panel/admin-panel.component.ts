@@ -33,7 +33,7 @@ export class AdminPanelComponent implements OnInit {
       EndCity: '',
       StartDate: '',
       EndDate: '',
-     Delay: null,
+      Delay: '',
     };
   }
 

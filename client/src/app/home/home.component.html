@@ -10,10 +10,9 @@
       <a  class="nav-link" routerLink="/user/login">Авторизация</a>
     </li>
   </ul>
-  <p *ngIf="this.role.isAuthenticated()" class="text-white  mb-0">Вы вошли как {{this.userDetails.UserName}}</p>
-  <button  *ngIf="this.role.isAuthenticated()" class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Выйти</button>
+  <p *ngIf="this.role.isAuthenticated() && userDetails" class="text-white  mb-0 ml-auto mr-3" >Вы вошли как {{this.userDetails.UserName}}</p>
+  <button  *ngIf="this.role.isAuthenticated()" class="btn btn-danger  my-2 my-sm-0" (click)="onLogout()">Выйти</button>
 </nav>
-
 <table class="table table-hover">
   <tr>
     <th>Город вылета</th>
@@ -22,12 +21,12 @@
     <th>Дата прилета</th>
     <th>Задержка</th>
   </tr>
-  <tr *ngFor="let pd of service.list">
+  <tr *ngFor="let pd of service.list " >
     <td (click)="populateForm(pd)">{{pd.StartCity}}</td>
     <td (click)="populateForm(pd)">{{pd.EndCity}}</td>
     <td (click)="populateForm(pd)">{{pd.StartDate| date: 'd MMMM  h:mm a'}}</td>
     <td (click)="populateForm(pd)">{{pd.EndDate| date: 'd MMMM  h:mm a'}}</td>
-    <td (click)="populateForm(pd)">{{pd.Delay| date: 'mm мин'}}</td>
+    <td (click)="populateForm(pd)">{{pd.Delay| date: 'h час mm мин'}}</td>
     <td>
       <i *ngIf="this.role.roleMatch(['Admin'])" class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.FSId)"></i>
     </td>

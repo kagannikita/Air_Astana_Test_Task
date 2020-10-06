@@ -2,6 +2,7 @@ import { FlightSchedule } from './flight-schedule.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class FlightScheduleService {
 
   constructor(private http: HttpClient) { }
 
+
   postFlightSchedule(): Observable<any>{
     return this.http.post(this.rootURL + '/FlightSchedule', this.formData);
   }
@@ -33,7 +35,10 @@ export class FlightScheduleService {
 
   refreshList(): void {
     this.http.get(this.rootURL + '/FlightSchedule')
-      .toPromise()
-      .then(res => this.list = res as FlightSchedule[]);
+      .pipe(map((response: FlightSchedule[]) => {return response.sort((a: FlightSchedule, b: FlightSchedule) => {
+        return +new Date(a.StartDate) - +new Date(b.StartDate);
+      }); })).subscribe(list => {
+      this.list = list;
+    });
   }
 }
